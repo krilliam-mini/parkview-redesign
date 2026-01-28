@@ -1,0 +1,133 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const services = [
+  { icon: "🍽", title: "Menu Selections", desc: "Range of quality menus tailored to your guest count and preferences" },
+  { icon: "🥂", title: "Wedding Breakfasts", desc: "Elegant daytime dining and evening refreshments for your celebration" },
+  { icon: "🌿", title: "Dietary Accommodations", desc: "Special arrangements for all dietary requirements and allergies" },
+  { icon: "🎨", title: "Table Settings", desc: "Customizable color themes to match your wedding aesthetic" },
+  { icon: "💐", title: "Floral Decorations", desc: "Beautiful floral table arrangements to enhance your venue" },
+  { icon: "🍾", title: "Bar Service", desc: "Flexible options including cash bar or open bar arrangements" },
+  { icon: "🚗", title: "Transportation", desc: "Coordination of taxi services for you and your guests" },
+  { icon: "🎵", title: "Music & Entertainment", desc: "Full support for DJs, live bands, and entertainment services" },
+];
+---
+
+<Layout title="Wedding Venues in Southend | Chalkwell Park Rooms" description="One of the most friendly and affordable wedding venues in Southend. Create unforgettable memories at Chalkwell Park Rooms.">
+  <!-- Wedding Hero -->
+  <header class="wedding-hero">
+    <div class="wedding-hero__content">
+      <span class="section-tag section-tag--light">Celebrations of Love</span>
+      <h1 class="wedding-hero__title">Weddings at<br/>Chalkwell Park Rooms</h1>
+      <p class="wedding-hero__tagline">One of the most friendly and affordable wedding venues in Southend</p>
+      <p class="wedding-hero__desc">
+        We make your vision come to life so your special day is a memory that will always make you smile.
+      </p>
+    </div>
+  </header>
+
+  <!-- Wedding Services -->
+  <section class="wedding-services">
+    <div class="container">
+      <div class="wedding-services__header">
+        <span class="section-tag">What We Offer</span>
+        <h2 class="wedding-services__title">Everything for Your Perfect Day</h2>
+        <div class="wedding-services__divider">
+          <span class="wedding-services__divider-line"></span>
+          <span class="wedding-services__divider-icon">&#10087;</span>
+          <span class="wedding-services__divider-line"></span>
+        </div>
+      </div>
+
+      <div class="wedding-services__grid">
+        {services.map((service) => (
+          <div class="wedding-service">
+            <div class="wedding-service__icon">{service.icon}</div>
+            <h4 class="wedding-service__title">{service.title}</h4>
+            <p class="wedding-service__desc">{service.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Mid-Week Package -->
+  <section class="midweek">
+    <div class="container">
+      <div class="midweek__content">
+        <span class="midweek__badge">Special Offer</span>
+        <h2 class="midweek__title">Mid-Week Wedding Packages</h2>
+        <p class="midweek__text">
+          Looking for exceptional value? Our inclusive mid-week wedding packages offer discounted rates for celebrations held Monday through Thursday, without compromising on quality or service.
+        </p>
+        <a href="/booking" class="btn btn--white">Enquire About Packages</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="testimonials__header">
+        <span class="section-tag">Kind Words</span>
+        <h2 class="testimonials__title">What Our Couples Say</h2>
+      </div>
+
+      <div class="testimonials__grid">
+        <article class="testimonial">
+          <span class="testimonial__quote">"</span>
+          <div class="testimonial__content">
+            <p class="testimonial__text">
+              The staff were absolutely incredible, especially <span class="testimonial__highlight">Gary</span> who went above and beyond to make sure everything was perfect. The food was exceptional and our guests couldn't stop talking about it!
+            </p>
+            <div class="testimonial__author">
+              <div class="testimonial__avatar">S</div>
+              <div class="testimonial__info">
+                <span class="testimonial__name">Sarah & James</span>
+                <span class="testimonial__event">Summer Wedding 2025</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="testimonial">
+          <span class="testimonial__quote">"</span>
+          <div class="testimonial__content">
+            <p class="testimonial__text">
+              We had the most magical day! The <span class="testimonial__highlight">beautiful terrace</span> was perfect for our photos, and the DJ kept everyone dancing until the very end. The quality of the cuisine was outstanding.
+            </p>
+            <div class="testimonial__author">
+              <div class="testimonial__avatar">E</div>
+              <div class="testimonial__info">
+                <span class="testimonial__name">Emily & David</span>
+                <span class="testimonial__event">Autumn Wedding 2024</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wedding CTA -->
+  <section class="wedding-cta">
+    <div class="container">
+      <div class="wedding-cta__content">
+        <span class="section-tag">Start Planning</span>
+        <h2 class="wedding-cta__title">Begin Your Journey</h2>
+        <p class="wedding-cta__text">
+          Ready to plan your dream wedding? Get in touch with our team today and let us help make your special day unforgettable.
+        </p>
+
+        <div class="cta__phone">
+          <a href="tel:01702555154" class="cta__phone-link">
+            <span class="cta__phone-icon">&#9742;</span>
+            <span>01702 555154</span>
+          </a>
+        </div>
+
+        <a href="/booking" class="btn btn--primary btn--large">Book a Viewing</a>
+      </div>
+    </div>
+  </section>
+</Layout>
