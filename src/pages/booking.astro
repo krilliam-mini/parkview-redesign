@@ -1,0 +1,226 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const eventTypes = [
+  { value: "", label: "Select event type" },
+  { value: "wedding", label: "Wedding" },
+  { value: "party", label: "Party" },
+  { value: "lunch", label: "Lunch" },
+  { value: "conference", label: "Conference" },
+  { value: "christmas-party", label: "Christmas Party" },
+  { value: "wake", label: "Wake" },
+  { value: "other", label: "Other" },
+];
+
+const months = [
+  { value: "", label: "Month" },
+  { value: "1", label: "January" },
+  { value: "2", label: "February" },
+  { value: "3", label: "March" },
+  { value: "4", label: "April" },
+  { value: "5", label: "May" },
+  { value: "6", label: "June" },
+  { value: "7", label: "July" },
+  { value: "8", label: "August" },
+  { value: "9", label: "September" },
+  { value: "10", label: "October" },
+  { value: "11", label: "November" },
+  { value: "12", label: "December" },
+];
+
+const years = ["", "2024", "2025", "2026", "2027", "2028", "2029"];
+---
+
+<Layout title="Make a Booking | Chalkwell Park Rooms" description="Book your event at Chalkwell Park Rooms. Weddings, parties, conferences and more.">
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="container">
+      <div class="page-header__content">
+        <span class="section-tag section-tag--light">Enquiries</span>
+        <h1 class="page-header__title">Make a Booking</h1>
+        <p class="page-header__subtitle">From weddings to birthday parties, meetings and conferences, private lunches, and wakes.</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Booking Section -->
+  <section class="booking">
+    <div class="container">
+      <div class="booking__grid">
+        <!-- Contact Information -->
+        <div class="booking__info">
+          <h3 class="booking__info-title">Get in Touch</h3>
+          <p class="booking__info-text">We'd love to hear from you. Choose your preferred method of contact and we'll get back to you as soon as possible.</p>
+
+          <div class="booking__contact-method">
+            <div class="booking__contact-icon">&#9742;</div>
+            <div class="booking__contact-details">
+              <h4>Call Us Directly</h4>
+              <a href="tel:01702555154">01702 555154</a>
+            </div>
+          </div>
+
+          <div class="booking__contact-method">
+            <div class="booking__contact-icon">&#9993;</div>
+            <div class="booking__contact-details">
+              <h4>Online Enquiry</h4>
+              <span>Complete the form opposite</span>
+            </div>
+          </div>
+
+          <div class="booking__badge">
+            We respond within 24 hours
+          </div>
+
+          <p style="margin-top: var(--space-lg); font-size: 0.9375rem; color: var(--forest);">
+            For urgent enquiries, please call us directly on the number above. Our team is ready to help you plan your perfect event.
+          </p>
+        </div>
+
+        <!-- Booking Form -->
+        <div class="booking__form-wrapper">
+          <h3 class="booking__form-title">Booking Enquiry</h3>
+          <form class="booking__form" id="booking-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Your Name <span class="required">*</span></label>
+                <input type="text" id="name" name="name" required placeholder="Enter your full name" />
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number <span class="required">*</span></label>
+                <input type="tel" id="phone" name="phone" required placeholder="Your contact number" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Email Address <span class="required">*</span></label>
+                <input type="email" id="email" name="email" required placeholder="your@email.com" />
+              </div>
+              <div class="form-group">
+                <label for="event-type">Event Type <span class="required">*</span></label>
+                <select id="event-type" name="event-type" required>
+                  {eventTypes.map((type) => (
+                    <option value={type.value}>{type.label}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Preferred Date <span class="required">*</span></label>
+              <div class="date-inputs">
+                <select id="date-day" name="date-day" required>
+                  <option value="">Day</option>
+                  {Array.from({ length: 31 }, (_, i) => i + 1).map((day) => (
+                    <option value={day.toString()}>{day}</option>
+                  ))}
+                </select>
+                <select id="date-month" name="date-month" required>
+                  {months.map((month) => (
+                    <option value={month.value}>{month.label}</option>
+                  ))}
+                </select>
+                <select id="date-year" name="date-year" required>
+                  {years.map((year) => (
+                    <option value={year}>{year || "Year"}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group form-group--full">
+              <label for="message">Your Message <span class="required">*</span></label>
+              <textarea id="message" name="message" required placeholder="Tell us about your event - number of guests, special requirements, any questions..."></textarea>
+            </div>
+
+            <div class="form-submit">
+              <button type="submit" class="btn btn--primary btn--large">Send Enquiry</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const form = document.getElementById('booking-form') as HTMLFormElement;
+
+  if (form) {
+    // Add focus styling to form groups
+    const inputs = form.querySelectorAll('input, select, textarea');
+
+    inputs.forEach(input => {
+      input.addEventListener('focus', () => {
+        input.closest('.form-group')?.classList.add('focused');
+      });
+
+      input.addEventListener('blur', () => {
+        input.closest('.form-group')?.classList.remove('focused');
+
+        // Add filled class if has value
+        if ((input as HTMLInputElement).value) {
+          input.closest('.form-group')?.classList.add('filled');
+        } else {
+          input.closest('.form-group')?.classList.remove('filled');
+        }
+      });
+    });
+
+    // Form submission handler
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Basic validation
+      let isValid = true;
+      const required = form.querySelectorAll('[required]');
+
+      required.forEach(field => {
+        if (!(field as HTMLInputElement).value.trim()) {
+          isValid = false;
+          field.closest('.form-group')?.classList.add('error');
+        } else {
+          field.closest('.form-group')?.classList.remove('error');
+        }
+      });
+
+      if (isValid) {
+        // Show success message (in production, this would submit to server)
+        const submitBtn = form.querySelector('[type="submit"]') as HTMLButtonElement;
+        const originalText = submitBtn.textContent;
+
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+
+        // Simulate form submission
+        setTimeout(() => {
+          submitBtn.textContent = 'Enquiry Sent!';
+          submitBtn.style.background = '#234338';
+
+          setTimeout(() => {
+            submitBtn.textContent = originalText;
+            submitBtn.style.background = '';
+            submitBtn.disabled = false;
+            form.reset();
+          }, 3000);
+        }, 1500);
+      }
+    });
+  }
+</script>
+
+<style>
+  .form-group.error input,
+  .form-group.error select,
+  .form-group.error textarea {
+    border-color: var(--terracotta);
+  }
+
+  .form-group.focused input,
+  .form-group.focused select,
+  .form-group.focused textarea {
+    border-color: var(--gold);
+    background: var(--white);
+  }
+</style>
